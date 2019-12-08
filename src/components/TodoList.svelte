@@ -27,6 +27,10 @@ const addTodo = () => {
 
 console.log(listItems)
 
+const deleteTodo = (todoId) => {
+  listItems = listItems.filter(todo => todo.id !== todoId)
+}
+
 </script>
 <style>
 
@@ -43,7 +47,6 @@ console.log(listItems)
 }
 
 .new-todo-title {
-  width: 350px;
   border-radius: 4px;
   outline-color: maroon;
 }
@@ -55,7 +58,8 @@ console.log(listItems)
 
 .add-btn {
   padding: 15px;
-  width: 200px;
+  width: 100%;
+  border-radius: 4px;
   display: flex;
   justify-content:center;
   align-items: center;
@@ -84,6 +88,8 @@ console.log(listItems)
   font-weight: 700;
   font-size: 14px;
   padding-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 
 .error-message {
@@ -114,7 +120,7 @@ console.log(listItems)
   <button class="add-btn" on:click={addTodo}> Add </button>
   <div class="todo-list-block">
   {#each listItems as todoItem}
-  <TodoItem todo={todoItem}/>
+  <TodoItem todo={todoItem} deleteTodo={() => deleteTodo(todoItem.id)}/>
   {/each}
   </div>
 </div>
